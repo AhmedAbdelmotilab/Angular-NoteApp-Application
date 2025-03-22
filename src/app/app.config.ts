@@ -13,6 +13,7 @@ import {
 } from '@angular/platform-browser';
 import { provideHttpClient , withFetch , withInterceptors } from '@angular/common/http';
 import { headerInterceptor } from './core/interceptors/header.interceptor';
+import { errorInterceptor } from './core/interceptors/error.interceptor';
 
 export const appConfig : ApplicationConfig = {
     providers : [
@@ -26,6 +27,6 @@ export const appConfig : ApplicationConfig = {
             withViewTransitions ()
         ) ,
         provideClientHydration ( withEventReplay () ) ,
-        provideHttpClient ( withFetch () , withInterceptors ( [ headerInterceptor ] ) )
+        provideHttpClient ( withFetch () , withInterceptors ( [ headerInterceptor , errorInterceptor ] ) )
     ]
 };
