@@ -15,6 +15,6 @@ export class UserService {
     }
 
     userSignIn ( data : any ) : Observable<any> {
-        return this.httpClient.post ( environment.baseUrl + 'users/signUp' , data );
+        return this.httpClient.post ( environment.baseUrl + 'users/signIn' , data );
     }
 }
