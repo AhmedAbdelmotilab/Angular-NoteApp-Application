@@ -1,4 +1,6 @@
 # NoteApp
+Powerful Note-Taking App – Securely login/signup to create, edit, delete, and view all your notes in one place. Stay organized with seamless note management anytime, anywhere! 📝✨
+Your Ideas, Safe & Accessible – Effortlessly add, update, or remove notes while enjoying a clean, user-friendly interface. Never lose a thought again! 🔒📲
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.0.
 
