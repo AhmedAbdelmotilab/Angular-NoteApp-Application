@@ -1,0 +1,78 @@
+<section class = "py-5">
+    <h1 class = "text-success text-center">Login Now</h1>
+    <div class = "container align-items-center bg-white py-4 w-50  rounded-4 shadow-sm">
+        <form
+            [formGroup] = "loginForm"
+            (ngSubmit) = "userLoginIn()"
+        >
+            <div class = "form-floating mb-3">
+                @let emailControl = loginForm.get('email');
+                <input
+                    formControlName = "email"
+                    type = "email"
+                    class = "form-control"
+                    id = "email"
+                    placeholder = "name@example.com"
+                    [class] = "{
+                    'is-invalid':emailControl?.touched && emailControl?.errors,
+                    'is-valid':!emailControl?.errors
+                    }"
+                >
+                <label for = "email">Email address</label>
+                <!-- Show Errors Here With Alert -->
+                @if (emailControl?.touched && emailControl?.errors) {
+                    <div
+                        class = "alert alert-danger my-2"
+                        role = "alert"
+                    >
+                        @if (emailControl?.getError('required')) {
+                            <span>- Email is required</span>
+                        } @else if (emailControl?.getError('email')) {
+                            <span>- Enter Valid Email</span>
+                        }
+                    </div>
+                }
+            </div>
+            <div class = "form-floating mb-3">
+                @let passwordControl = loginForm.get('password');
+                <input
+                    formControlName = "password"
+                    type = "password"
+                    class = "form-control"
+                    id = "password"
+                    placeholder = "Password"
+                    [class] = "{
+                    'is-invalid':passwordControl?.touched && passwordControl?.errors,
+                    'is-valid':!passwordControl?.errors
+                    }"
+                >
+                <label for = "password">Password</label>
+                <!-- Show Errors Here With Alert -->
+                @if (passwordControl?.touched && passwordControl?.errors) {
+                    <div
+                        class = "alert alert-danger my-2"
+                        role = "alert"
+                    >
+                        @if (passwordControl?.getError('required')) {
+                            <span>- Password is required</span>
+                        } @else if (passwordControl?.getError('pattern')) {
+                            <span>- password must start with upperCase then from 6 to more any word chars.</span>
+
+                        }
+                    </div>
+                }
+            </div>
+            <div class = "d-flex justify-content-center">
+                <button
+                    type = "submit"
+                    class = "btn btn-success my-3 w-25 "
+                    [disabled] = "loginForm.invalid"
+                >Login
+                    @if (isLoading) {
+                        <span class = "ps-2"><i class = "fas fa-spin fa-spinner"></i></span>
+                    }
+                </button>
+            </div>
+        </form>
+    </div>
+</section>
