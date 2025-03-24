@@ -3,12 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { jwtDecode } from 'jwt-decode';
+import { IUser } from '../../interfaces/IUser/iuser';
 
 @Injectable ( {
     providedIn : 'root'
 } )
 export class UserService {
-    userData : any = null;
+    userData : IUser = {} as IUser;
 
     constructor ( private httpClient : HttpClient ) { }
 
@@ -23,6 +24,7 @@ export class UserService {
     saveUserData () : void {
         if ( localStorage.getItem ( 'token' ) ) {
             this.userData = jwtDecode ( localStorage.getItem ( 'token' )! );
+            console.log ( this.userData );
         }
     }
 }
