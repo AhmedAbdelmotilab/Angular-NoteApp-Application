@@ -1,0 +1,164 @@
+<section class = "py-5">
+    <h1 class = "text-success text-center">Register Now</h1>
+    <div class = "container align-items-center bg-white py-4 w-50  rounded-4 shadow-sm">
+        <form
+            [formGroup] = "registerForm"
+            (ngSubmit) = "userRegister()"
+        >
+            <div class = "form-floating mb-3">
+                @let nameControl = registerForm.get('name');
+                <input
+                    formControlName = "name"
+                    type = "text"
+                    class = "form-control"
+                    id = "name"
+                    placeholder = "AhmedAbdelmotilab"
+                    [class] = "{
+                    'is-invalid':nameControl?.touched && nameControl?.errors,
+                    'is-valid':!nameControl?.errors
+                    }"
+                >
+                <label for = "name">UserName</label>
+                <!-- Show Errors Here With Alert -->
+                @if (nameControl?.touched && nameControl?.errors) {
+                    <div
+                        class = "alert alert-danger my-2 "
+                        role = "alert"
+                    >
+                        @if (nameControl?.getError('required')) {
+                            <span>- Name is required</span>
+                        } @else if (nameControl?.getError('minlength')) {
+                            <span>- Name Should be more than or equal 3 chars</span>
+                        } @else if (nameControl?.getError('maxlength')) {
+                            <span>- Name Should be less than or equal 20 chars</span>
+                        }
+                    </div>
+                }
+            </div>
+            <div class = "form-floating mb-3">
+                @let emailControl = registerForm.get('email');
+                <input
+                    formControlName = "email"
+                    type = "email"
+                    class = "form-control"
+                    id = "email"
+                    placeholder = "name@example.com"
+                    [class] = "{
+                    'is-invalid':emailControl?.touched && emailControl?.errors,
+                    'is-valid':!emailControl?.errors
+                    }"
+                >
+                <label for = "email">Email address</label>
+                <!-- Show Errors Here With Alert -->
+                @if (emailControl?.touched && emailControl?.errors) {
+                    <div
+                        class = "alert alert-danger my-2"
+                        role = "alert"
+                    >
+                        @if (emailControl?.getError('required')) {
+                            <span>- Email is required</span>
+                        } @else if (emailControl?.getError('email')) {
+                            <span>- Enter Valid Email</span>
+                        }
+                    </div>
+                }
+            </div>
+            <div class = "form-floating mb-3">
+                @let passwordControl = registerForm.get('password');
+                <input
+                    formControlName = "password"
+                    type = "password"
+                    class = "form-control"
+                    id = "password"
+                    placeholder = "Password"
+                    [class] = "{
+                    'is-invalid':passwordControl?.touched && passwordControl?.errors,
+                    'is-valid':!passwordControl?.errors
+                    }"
+                >
+                <label for = "password">Password</label>
+                <!-- Show Errors Here With Alert -->
+                @if (passwordControl?.touched && passwordControl?.errors) {
+                    <div
+                        class = "alert alert-danger my-2"
+                        role = "alert"
+                    >
+                        @if (passwordControl?.getError('required')) {
+                            <span>- Password is required</span>
+                        } @else if (passwordControl?.getError('pattern')) {
+                            <span>- password must start with upperCase then from 6 to more any word chars.</span>
+
+                        }
+                    </div>
+                }
+            </div>
+            <div class = "form-floating mb-3">
+                @let ageControl = registerForm.get('age');
+                <input
+                    formControlName = "age"
+                    type = "number"
+                    class = "form-control"
+                    id = "age"
+                    placeholder = "18"
+                    [class] = "{
+                    'is-invalid':ageControl?.touched && ageControl?.errors,
+                    'is-valid':!ageControl?.errors
+                    }"
+                >
+                <label for = "age">Age</label>
+                <!-- Show Errors Here With Alert -->
+                @if (ageControl?.touched && ageControl?.errors) {
+                    <div
+                        class = "alert alert-danger my-2"
+                        role = "alert"
+                    >
+                        @if (ageControl?.getError('required')) {
+                            <span>- Age is required</span>
+                        } @else if (ageControl?.getError('pattern')) {
+                            <span>- Invalid age! Please enter a number between 10 and 80. </span>
+                        }
+                    </div>
+                }
+            </div>
+            <div class = "form-floating ">
+                @let phoneControl = registerForm.get('phone');
+                <input
+                    formControlName = "phone"
+                    type = "tel"
+                    class = "form-control"
+                    id = "phone"
+                    placeholder = "+20...."
+                    [class] = "{
+                    'is-invalid':phoneControl?.touched && phoneControl?.errors,
+                    'is-valid':!phoneControl?.errors
+                    }"
+                >
+                <label for = "phone">Phone</label>
+                <!-- Show Errors Here With Alert -->
+                @if (phoneControl?.touched && phoneControl?.errors) {
+                    <div
+                        class = "alert alert-danger my-2"
+                        role = "alert"
+                    >
+                        @if (phoneControl?.getError('required')) {
+                            <span>- Phone is required</span>
+                        } @else if (phoneControl?.getError('pattern')) {
+                            <span>- phone must be only egypt phone numbers</span>
+                        }
+                    </div>
+                }
+            </div>
+            <div class = "d-flex justify-content-center">
+                <button
+                    type = "submit"
+                    class = "btn btn-success my-3 w-25 "
+                    [disabled] = "registerForm.invalid"
+                >Register
+                    @if (isLoading) {
+                        <span class = "ps-2"><i class = "fas fa-spin fa-spinner"></i></span>
+                    }
+                </button>
+            </div>
+        </form>
+    </div>
+</section>
