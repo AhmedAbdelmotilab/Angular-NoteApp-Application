@@ -1,0 +1,184 @@
+<section>
+    <div class = "container d-flex justify-content-center align-items-center pt-5">
+        <button
+            data-bs-toggle = "modal"
+            data-bs-target = "#exampleModal"
+            class = "btn btn-success"
+        >Add New Note
+        </button>
+    </div>
+    <div class = "container py-5">
+        <h1 class = "text-success text-center pb-3">Your Notes</h1>
+        <div class = "row g-5">
+            @for (note of notes; track note._id) {
+                <div class = "col-lg-3 col-sm-12">
+                    <div class = "card">
+                        <div class = "card-body">
+                            <h4 class = "card-title">{{ note.title }}</h4>
+                            <p class = "card-text">{{ note.content }}</p>
+                            <div class = "note-btn d-flex justify-content-between align-items-center">
+                                <!--  Send The Current Note To Put It In The Form  -->
+                                <button
+                                    data-bs-toggle = "modal"
+                                    data-bs-target = "#update"
+                                    class = "btn btn-warning w-50"
+                                    (click) = "patchValue(note);currentNoteId=note._id"
+
+                                >Update
+                                </button>
+                                <button
+                                    (click) = "deleteNote(note._id)"
+                                    class = "btn btn-danger w-25"
+                                ><i class = "fa-solid fa-trash"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <!-- Bootstrap Modal -->
+    <div
+        class = "modal fade"
+        id = "exampleModal"
+        tabindex = "-1"
+        aria-labelledby = "exampleModalLabel"
+        aria-hidden = "true"
+
+    >
+        <div
+            class = "modal-dialog"
+        >
+            <div class = "modal-content">
+                <div class = "modal-header">
+                    <h1
+                        class = "modal-title fs-5"
+                        id = "exampleModalLabel"
+                    >Add New Note </h1>
+                    <button
+                        type = "button"
+                        class = "btn-close"
+                        data-bs-dismiss = "modal"
+                        aria-label = "Close"
+                    ></button>
+                </div>
+                <form
+                    [formGroup] = "addNoteForm"
+                    (ngSubmit) = "addNote()"
+                >
+                    <div class = "modal-body">
+                        <div class = "mb-3">
+                            <label
+                                for = "title"
+                                class = "form-label"
+                            >Note Title</label>
+                            <input
+                                type = "text"
+                                class = "form-control"
+                                id = "title"
+                                formControlName = "title"
+                            >
+                        </div>
+                        <div class = "mb-3">
+                            <label
+                                for = "content"
+                                class = "form-label"
+                            >Example textarea</label>
+                            <textarea
+                                class = "form-control"
+                                id = "content"
+                                rows = "3"
+                                formControlName = "content"
+                            ></textarea>
+                        </div>
+                    </div>
+                    <div class = "modal-footer">
+                        <button
+                            type = "button"
+                            class = "btn btn-secondary"
+                            data-bs-dismiss = "modal"
+                        >Close
+                        </button>
+                        <button
+                            type = "submit"
+                            class = "btn btn-primary"
+                        >Add Note
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div
+        class = "modal fade"
+        id = "update"
+        tabindex = "-1"
+        aria-labelledby = "updateLabel"
+        aria-hidden = "true"
+
+    >
+        <div
+            class = "modal-dialog"
+        >
+            <div class = "modal-content">
+                <div class = "modal-header">
+                    <h1
+                        class = "modal-title fs-5"
+                        id = "updateLabel"
+                    >Update Note</h1>
+                    <button
+                        type = "button"
+                        class = "btn-close"
+                        data-bs-dismiss = "modal"
+                        aria-label = "Close"
+                    ></button>
+                </div>
+                <form
+                    [formGroup] = "updateNoteForm"
+                    (ngSubmit) = "updateNote()"
+                >
+                    <div class = "modal-body">
+                        <div class = "mb-3">
+                            <label
+                                for = "update-title"
+                                class = "form-label"
+                            >Note Title</label>
+                            <input
+                                type = "text"
+                                class = "form-control"
+                                id = "update-title"
+                                formControlName = "title"
+                            >
+                        </div>
+                        <div class = "mb-3">
+                            <label
+                                for = "update-content"
+                                class = "form-label"
+                            >Example textarea</label>
+                            <textarea
+                                class = "form-control"
+                                id = "update-content"
+                                rows = "3"
+                                formControlName = "content"
+                            >
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class = "modal-footer">
+                        <button
+                            type = "button"
+                            class = "btn btn-secondary"
+                            data-bs-dismiss = "modal"
+                        >Close
+                        </button>
+                        <button
+                            type = "submit"
+                            class = "btn btn-primary"
+                        >Update Note
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
