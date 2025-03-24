@@ -19,41 +19,46 @@
             class = "collapse navbar-collapse "
             id = "navbarNav"
         >
-            <ul class = "navbar-nav ms-auto">
+            @if (isLogIn) {
+                <ul class = "navbar-nav ms-auto">
 
-                <li class = "nav-item ms-3">
-                    <a
-                        class = "nav-link"
-                        routerLink = "/home"
-                        routerLinkActive = "bg-info rounded "
+                    <li class = "nav-item ms-3">
+                        <a
+                            class = "nav-link"
+                            routerLink = "/home"
+                            routerLinkActive = "bg-info rounded "
 
-                    >Home</a>
-                </li>
+                        >Home</a>
+                    </li>
+                </ul>
+                <ul class = "navbar-nav ms-auto">
 
-            </ul>
-            <ul class = "navbar-nav ms-auto">
+                    <li class = "nav-item me-3">
+                        <a
+                            (click) = "logOut()"
+                            class = "nav-link btn btn-danger"
+                        >Logout</a>
+                    </li>
+                </ul>
+            } @else if (! isLogIn) {
+                <ul class = "navbar-nav ms-auto">
+                    <li class = "nav-item  me-3 ">
+                        <a
+                            class = "nav-link"
+                            routerLink = "/login"
+                            routerLinkActive = "bg-info rounded "
+                        >Login</a>
+                    </li>
+                    <li class = "nav-item me-3">
+                        <a
+                            class = "nav-link"
+                            routerLink = "/register"
+                            routerLinkActive = "bg-info rounded "
+                        >Register</a>
+                    </li>
+                </ul>
+            }
 
-                <li class = "nav-item  me-3 ">
-                    <a
-                        class = "nav-link"
-                        routerLink = "/login"
-                        routerLinkActive = "bg-info rounded "
-                    >Login</a>
-                </li>
-                <li class = "nav-item me-3">
-                    <a
-                        class = "nav-link"
-                        routerLink = "/register"
-                        routerLinkActive = "bg-info rounded "
-                    >Register</a>
-                </li>
-                <li class = "nav-item me-3">
-                    <a
-                        class = "nav-link"
-                    >Logout</a>
-                </li>
-
-            </ul>
         </div>
     </div>
 </nav>
